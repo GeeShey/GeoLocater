@@ -99,7 +99,6 @@ public class App {
 		  
 		  }
 		  catch (RateLimitedException ex) { // Handle rate limits here.
-			  //AIzaSyD7Xh9wXX7TMrgUydVDRAoHeBOnMUfqVpo
 		  }
 		  
 		  GooglePlaces client = new GooglePlaces(GoogleApiKey);
@@ -110,7 +109,7 @@ public class App {
 		  //List<Place> places = client.getNearbyPlaces(lat,lng,radius,10);
 		  
 		  //this query override is quite flexible, lot of params can be added such as placeType and keyword
-		  List<Place> places = client.getPlacesByQuery("Full Sail", GooglePlaces.MAXIMUM_RESULTS,Param.name("type").value("University"), Param.name("radius").value(radius));
+		  List<Place> places = client.getPlacesByQuery("Full Sail", 10,Param.name("type").value("University"), Param.name("radius").value(radius));
 		  
 		  for (Place place : places) {
 				/*
