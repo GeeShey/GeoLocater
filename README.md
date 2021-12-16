@@ -20,8 +20,11 @@ Google Maps API
 FLOW OF CODE
 
 get ip address of device using amazonaws
+
 get longitude & latitude using ipinfo.com
+
 create Google Places API query using https://github.com/windy1/google-places-api-java client
+
 store query results in a list  
 	
 PRE-REQUISITES
