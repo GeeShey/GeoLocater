@@ -30,7 +30,9 @@ store query results in a list
 PRE-REQUISITES
 
 create an account on google developers console and get API key
+
 create an account on ipinfo.com and get API Key
+
 probably a better idea would be to link these to values to a local file to 
 avoid uploading your sensitive info(API keys) to the repository
   
@@ -38,4 +40,5 @@ WARNINGS
 
 While this may seem like a free solution to geolocate nearby places, the google developers console
 places a limit on the number of queries and so does ipinfo.com
+
 Please refer to the guidelines and limits mentioned on both the websites
