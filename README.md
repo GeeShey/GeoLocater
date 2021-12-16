@@ -2,6 +2,7 @@
 This a Java program which can search for nearby locations(by geo-locating the device running this program) and writing a query on Google Places API.
 
 PROJECT DETAILS
+
 This a Java program which can search for nearby locations(by geo-locating the device running this program)
 and writting a query on Google Places API
 	
@@ -19,7 +20,7 @@ Google Maps API
 FLOW OF CODE
 get ip address of device using amazonaws
 get longitude & latitude using ipinfo.com
-create Google Places API query using "https://github.com/windy1/google-places-api-java" client
+create Google Places API query using https://github.com/windy1/google-places-api-java client
 store query results in a list  
 	
 PRE-REQUISITES
