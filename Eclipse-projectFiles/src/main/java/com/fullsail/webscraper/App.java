@@ -3,7 +3,9 @@ package com.fullsail.webscraper;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -84,7 +86,7 @@ public class App {
 	public static void getInput() {
 		Scanner n = new Scanner(System.in);
 		
-		System.out.println("Enter Query search element");
+		System.out.println("Enter Query search element (name of store)");
 		querySearchName = n.nextLine();
 		
 		System.out.println("Enter search radius (metres)");
@@ -98,7 +100,7 @@ public class App {
 		searchResults = n.nextInt();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws MalformedURLException {
 		
 		if(!testRun){
 			
@@ -123,6 +125,8 @@ public class App {
 
 			System.out.println(response.getCity());
 			System.out.println(response.getLatitude() +", "+ response.getLongitude());
+			System.out.println();
+			
 			latitude = response.getLatitude();
 			longitude = response.getLongitude();
 
@@ -139,12 +143,26 @@ public class App {
 
 		//this query override is quite flexible, lot of params can be added such as placeType and keyword
 		List<Place> places = client.getPlacesByQuery(querySearchName, searchResults,Param.name("type").value(placeType), Param.name("radius").value(radius));
-
+		List<URL> urls = new ArrayList<URL>();
+		
+		int id =0;
 		for (Place place : places) {
+			
+			
 			/*
 			 * if (place.getName().equals(targetPlaceName)) { printBasicDetails(place); }
 			 */
+			
+			
+			id++;
+			System.out.println("Result ID: " + id);
 			printBasicDetails(place);
+			String u = "https://www.google.com/maps/place/?q=place_id:"+place.getPlaceId().toString();
+			URL myURL = new URL(u);
+			urls.add(myURL);
+
+			System.out.println("Maps URL: " + u);
+			System.out.println();
 
 		}	 
 
@@ -158,7 +176,6 @@ public class App {
 			System.out.println("Name: " + _p.getName());
 			System.out.println("Address: " + _p.getAddress());
 			System.out.println("Maps ID: " + _p.getPlaceId());
-			System.out.println();
 
 		}
 	}
