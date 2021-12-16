@@ -1,9 +1,12 @@
 package com.fullsail.webscraper;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +66,7 @@ public class App {
 	private static Double radius = (double) 1000;
 	private static int searchResults = 10;
 	private static boolean testRun  = false;
+	private static Scanner n = new Scanner(System.in);
 
 	//method to get the public ip address
 	public static String getIp() throws Exception {
@@ -84,7 +88,6 @@ public class App {
 	}
 	
 	public static void getInput() {
-		Scanner n = new Scanner(System.in);
 		
 		System.out.println("Enter Query search element (name of store)");
 		querySearchName = n.nextLine();
@@ -165,7 +168,33 @@ public class App {
 			System.out.println();
 
 		}	 
+		
+		try {
+			LaunchMap(places.size(),urls);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		
+		System.exit(1);
 
+	}
+	
+	public static void LaunchMap(int _maxSize,List<URL> _url) throws IOException, URISyntaxException {
+		
+		System.out.println("Choose Result ID:");
+		int choice = n.nextInt();
+		if(choice<1 || choice >_maxSize) {
+			System.exit(1);
+		}
+		else
+		{
+			Desktop desk = Desktop.getDesktop();
+	        
+	        desk.browse(new URI(_url.get(choice-1).toString()));
+		}
 	}
 
 	public static void printBasicDetails(Place _p)
@@ -175,7 +204,6 @@ public class App {
 			// Just an example of the amount of information at your disposal:
 			System.out.println("Name: " + _p.getName());
 			System.out.println("Address: " + _p.getAddress());
-			System.out.println("Maps ID: " + _p.getPlaceId());
 
 		}
 	}
